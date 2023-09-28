@@ -1,5 +1,6 @@
 <div class='home-button'>
-  <%= Time.now %>
+  <% time =  Time.now %>
+  <%= time.to_fs(:long) %>
   <button>Recherche patient</button>
   <button>Nouvelle prise en charge</button>
   <button>Listing patient</button>
@@ -12,4 +13,4 @@
 <h1>Prise en charge en attente de traitemant: (comptteur: num)
 <p>tableau</p>
 <h2>Incident - Absence - Visite medicale en attente de traitement : (compteur: num)
-<p>tableau<p>
+<p>tableau<p>s
