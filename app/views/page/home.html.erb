@@ -1,7 +1,7 @@
 <div class='home-button'>
   <% time =  Time.now %>
   <%= time.to_fs(:long) %>
-  <button>Recherche patient</button>
+  <%=button_to 'Recherche patient', patients_path %>
   <button>Nouvelle prise en charge</button>
   <button>Listing patient</button>
   <button>statistique</button>

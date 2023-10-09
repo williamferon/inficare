@@ -21,6 +21,9 @@ gem "sassc-rails"
 #simple form gen
 gem "simple_form"
 
+#ransack
+gem "ransack"
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
@@ -29,6 +32,9 @@ gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
+
+#jquery
+gem 'jquery-rails'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"

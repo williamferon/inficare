@@ -1,7 +1,16 @@
 class PatientsController < ApplicationController
+  #@patient = Patient.find(params[:id])
+
 
   def index
+
     @patients = Patient.all
+
+      if params[:query].present?
+        query = "%#{params[:query]}%"
+        sql_subquery = "nom LIKE :query OR prenom LIKE :query OR niss LIKE :query"
+        @patients = @patients.where(sql_subquery, query: query)
+      end
   end
 
   def show
@@ -9,12 +18,16 @@ class PatientsController < ApplicationController
   end
 
   def new
-    @restaurant = Patient.new # Needed to instantiate the form_with
+    @patient = Patient.new # Needed to instantiate the form_with
   end
 
   def create
     @patient = Patient.new(patient_params)
-    @patient.save
+    if @patient.save
+      redirect_to @patient, notice: 'patient créé avec succes.'
+    else
+      render :new
+    end
     # No need for app/views/restaurants/create.html.erb
     #redirect_to restaurant_path(@restaurant)
   end
@@ -33,5 +46,4 @@ class PatientsController < ApplicationController
   def patient_params
     params.require(:patient).permit(:nom, :prenom, :telephone, :rue, :numero, :ville, :niss)
   end
-
 end

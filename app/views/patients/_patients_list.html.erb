@@ -1,0 +1,15 @@
+<tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.nom %></td>
+        <td><%= patient.telephone %></td>
+        <td><%= patient.rue %></td>
+        <td><%= patient.numero %></td>
+        <td><%= patient.ville %></td>
+        <td><%= patient.niss %></td>
+        <td><%= patient.contact %></td>
+        <td><%= patient.lien %></td>
+        <td><%= patient.tel_contact %></td>
+      </tr>
+    <% end %>
+  </tbody>

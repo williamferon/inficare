@@ -1,0 +1,13 @@
+<%= simple_form_for @patient do |f| %>
+  <%= f.input :nom %>
+  <%= f.input :prenom %>
+  <%= f.input :telephone %>
+  <%= f.input :rue %>
+  <%= f.input :numero %>
+  <%= f.input :ville %>
+  <%= f.input :niss %>
+  <%= f.input :contact %>
+  <%= f.input :lien %>
+  <%= f.input :tel_contact %>
+  <%= f.button :submit, 'créer un patient'%>
+<% end  %>
