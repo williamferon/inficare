@@ -6,7 +6,7 @@
       <%= text_field_tag :query,
             params[:query],
             class: "form-control",
-            placeholder: "Type a keyword"
+            placeholder: "Type nom, prenom or niss"
         %>
       <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
     <% end %>
@@ -45,3 +45,4 @@
     <% end %>
   </tbody>
 </table>
+<button><%= link_to 'Nouveau patient', new_patient_path %></button>

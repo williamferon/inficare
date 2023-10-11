@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_16_151026) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_09_164232) do
+  create_table "canauxes", force: :cascade do |t|
+    t.string "nom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "channels", force: :cascade do |t|
+    t.string "nom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "nom"
     t.string "prenom"
@@ -22,6 +34,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_16_151026) do
     t.string "contact"
     t.string "lien"
     t.string "tel_contact"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sous_canauxes", force: :cascade do |t|
+    t.string "nom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subchannels", force: :cascade do |t|
+    t.string "nom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

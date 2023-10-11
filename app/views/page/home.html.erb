@@ -1,13 +1,13 @@
 <div class='home-button'>
   <% time =  Time.now %>
   <%= time.to_fs(:long) %>
-  <%=button_to 'Recherche patient', patients_path %>
+  <button><%= link_to 'Recherche patient', patients_path %></button>
   <button>Nouvelle prise en charge</button>
-  <button>Listing patient</button>
+  <button><%= link_to 'Listing patinents', patients_path %></button>
   <button>statistique</button>
     <div class='home-secondaire'>
       <button>Google maps</button>
-      <button>canaux</button>
+      <button><%= link_to 'canaux', channels_path %></button>
     </div>
 </div>
 <h1>Prise en charge en attente de traitemant: (comptteur: num)
