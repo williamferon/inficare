@@ -2,7 +2,7 @@
 
 <div class="row justify-content-center">
   <div class="col-sm-8 my-3">
-    <%= form_with url: patients_path, method: :get, class: "d-flex" do %>
+    <%= form_with url: channels_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
             params[:query],
             class: "form-control",
@@ -20,11 +20,23 @@
     </tr>
   </thead>
   <tbody>
+    <ul>
       <% @channels.each do |channel| %>
-      <tr>
-        <td><%= channel.nom %></td>
-      </tr>
-    <% end %>
+        <li>
+          <h2><%= link_to channel.nom, channel_path(channel) %></h2>
+          <strong><%= link_to "x", channel_path(channel), { data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} } %></strong>
+
+          <ul>
+            <% channel.sub_channels.each do |sub_channel| %>
+              <li><%= sub_channel.nom %></li>
+              <strong><%= link_to "x", channel_sub_channel_path(channel, sub_channel), { data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} } %></strong>
+            <% end %>
+
+          </ul>
+          <strong><%= link_to "+", new_channel_sub_channel_path(channel) %></strong>
+        </li>
+      <% end %>
+    </ul>
   </tbody>
 </table>
 <button><%= link_to 'Nouveau canal', new_channel_path %></button>

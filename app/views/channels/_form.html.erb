@@ -1,0 +1,5 @@
+<%= simple_form_for @channel do |f| %>
+  <%= f.input :nom %>
+  <%# <%= f.input :channel_id, collection: Channel.all, label: 'Canal parent' %>
+  <%= f.button :submit, 'Créer un canal' %>
+<% end %>

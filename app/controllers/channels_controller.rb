@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
-
+  before_action :find_channel, only: [:show, :edit, :update, :destroy]
   def index
 
     @channels = Channel.all
@@ -20,9 +20,9 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    @channel = Channel.new(patient_params)
+    @channel = Channel.new(channel_params)
     if @channel.save
-      redirect_to @channels, notice: 'patient créé avec succes.'
+      redirect_to @channel, notice: 'patient créé avec succes.'
     else
       render :new
     end
@@ -35,13 +35,18 @@ class ChannelsController < ApplicationController
   end
 
   def destroy
-    @channel = Patient.find(params[:id])
+    @channel = Channel.find(params[:id])
     @channel.destroy
+    redirect_to channels_path, notice: 'Canal supprimé avec succès.'
   end
 
   private
 
   def channel_params
-    params.require(:channel).permit(:nom )
+    params.require(:channel).permit(:nom, :channel_id)
+  end
+
+  def find_channel
+    @channel = Channel.find(params[:id])
   end
 end

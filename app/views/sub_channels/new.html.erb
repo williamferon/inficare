@@ -1,0 +1,5 @@
+<%= form_with(model: [@channel, @sub_channel], local: true) do |form| %>
+  <%= form.label :nom, "Nom du sous-canal" %>
+  <%= form.text_field :nom %>
+  <%= form.submit "Créer le sous-canal" %>
+<% end %>
