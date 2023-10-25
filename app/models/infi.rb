@@ -1,0 +1,2 @@
+class Infi < ApplicationRecord
+end

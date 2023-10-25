@@ -1,0 +1,29 @@
+
+<div class="container">
+  <h1 class="text-center mb-4">Personnel infirmier</h1>
+
+  <%= link_to "New Infi", new_infi_path, class: "btn btn-primary mb-4" %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Num</th>
+        <th>Nom</th>
+        <th>Region</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @infis.each do |infi| %>
+        <tr>
+          <td><%= infi.num %></td>
+          <td><%= infi.nom %></td>
+          <td><%= infi.region %></td>
+          <td>
+            <%= link_to 'x', infi, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

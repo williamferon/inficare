@@ -1,0 +1,2 @@
+class Kine < ApplicationRecord
+end

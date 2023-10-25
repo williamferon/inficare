@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get 'patients', to: 'patients#index'
   # Defines the root path route ("/")
   # root "articles#index"
+  resources :kines
+  resources :infis
 end

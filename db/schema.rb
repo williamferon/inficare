@@ -10,12 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_12_132241) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_25_125708) do
   create_table "channels", force: :cascade do |t|
     t.string "nom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "channel_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "name"
+    t.text "comment"
+    t.date "feedback_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "infis", force: :cascade do |t|
+    t.string "num"
+    t.string "nom"
+    t.string "region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "kines", force: :cascade do |t|
+    t.string "nom"
+    t.string "region"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "patients", force: :cascade do |t|

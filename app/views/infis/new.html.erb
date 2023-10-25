@@ -1,0 +1,17 @@
+<%= form_for @infi do |f| %>
+  <div class="field">
+    <%= f.label :num %>
+    <%= f.text_field :num %>
+  </div>
+  <div class="field">
+    <%= f.label :nom %>
+    <%= f.text_field :nom %>
+  </div>
+  <div class="field">
+    <%= f.label :region %>
+    <%= f.text_field :region %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
