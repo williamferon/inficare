@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :incidents
     resources :absences
     resources :info_medicales
+    resources :prise_en_charges, except: [:new, :create]
   end
   resources :channels do
     resources :sub_channels
@@ -14,4 +15,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :kines
   resources :infis
+  resources :prise_en_charges, only: [:new, :create]
 end
+
+# config/routes.rb

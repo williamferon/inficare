@@ -1,0 +1,62 @@
+<h1>New Prise En Charge</h1>
+
+<%= form_with(model: @prise_en_charge, local: true) do |form| %>
+  <%= form.hidden_field :patient_id, value: @patient.id %>
+  <% if @prise_en_charge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@prise_en_charge.errors.count, "error") %> prohibited this prise_en_charge from being saved:</h2>
+    </div>
+  <% end %>
+  <!-- rest of your form fields here -->
+  <h2>Patient</h2>
+  <div class="field">
+    <%= form.label :patient_id, "Select Existing Patient" %>
+    <%= form.collection_select :patient_id, Patient.all, :id, :nom_and_prenom_and_niss , include_blank: true %>
+    <button><%= link_to '+ Create New Patient', new_patient_path %></button>
+  </div>
+  <h2>Date</h2>
+  <div class="field">
+    <%= form.label :date_appel, "Date appel" %>
+    <%= form.date_field :date_appel %>
+    <%= form.label :date_debut, 'date debut' %>
+    <%= form.date_field :date_debut %>
+    <%= form.label :moment %>
+    <%= form.select :moment, ['matin', 'soir'] %>
+  </div>
+  <h2>Traité par :</h2>
+  <div class="field">
+    <%= form.label :traite_par, "Traité par" %>
+    <%= form.select :traite_par, ['Benoit', 'Charly', 'David','Ameline', 'new'] %>
+  </div>
+  <h2>Info patient :</h2>
+  <div class="field">
+    <%= form.label :info_patient, "Info patient" %>
+    <%= form.select :info_patient, ['palliatif', 'sortie hopital', 'CHIEN'] %>
+  </div>
+  <h2>Demande :</h2>
+  <div class="field">
+    <%= form.label :demande, "Demande :" %>
+    <%= form.select :demande, ['Urgente', 'Futur', 'Normale'] %>
+  </div>
+  <h2>Service :</h2>
+  <div class="field">
+  <%= form.label :service, "Service :" %>
+  <%= form.check_box :service, {}, 'KineCare', nil %> KineCare
+  <%= form.check_box :service, {}, 'InfiCare', nil %> InfiCare
+  </div>
+  <h2>dispatching:</h2>
+
+
+  <div class="field">
+    <%= form.label :dispatching_kine, "Dispatching kinécare" %>
+    <%= form.collection_select :dispatching_kine, Kine.all , :nom, :nom %>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', :back %>

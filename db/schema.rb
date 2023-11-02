@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_27_123342) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_02_142252) do
   create_table "absences", force: :cascade do |t|
     t.date "date"
     t.string "equipe"
@@ -88,6 +88,38 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_123342) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "prise_en_charges", force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.string "traite_par"
+    t.string "info_patient"
+    t.string "dispatching_inficare"
+    t.string "dispatching_kinecare"
+    t.string "demande"
+    t.string "service"
+    t.string "soins_infi"
+    t.string "soins_kine"
+    t.date "date_appel"
+    t.date "date_debut"
+    t.string "moment"
+    t.string "channel"
+    t.string "subchannel"
+    t.string "coordinateur"
+    t.string "email"
+    t.string "commentaire"
+    t.string "statut_demande"
+    t.time "matin_start_time"
+    t.time "matin_end_time"
+    t.time "midi_start_time"
+    t.time "midi_end_time"
+    t.time "apres_midi_start_time"
+    t.time "apres_midi_end_time"
+    t.time "soir_start_time"
+    t.time "soir_end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_prise_en_charges_on_patient_id"
+  end
+
   create_table "subchannels", force: :cascade do |t|
     t.string "nom"
     t.datetime "created_at", null: false
@@ -99,5 +131,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_27_123342) do
   add_foreign_key "absences", "patients"
   add_foreign_key "incidents", "patients"
   add_foreign_key "info_medicales", "patients"
+  add_foreign_key "prise_en_charges", "patients"
   add_foreign_key "subchannels", "channels"
 end

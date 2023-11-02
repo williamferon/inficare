@@ -2,7 +2,7 @@
   <% time =  Time.now %>
   <%= time.to_fs(:long) %>
   <button><%= link_to 'Recherche patient', patients_path %></button>
-  <button>Nouvelle prise en charge</button>
+<button><%= link_to 'Nouvelle prise en charge', new_prise_en_charge_path %></button>
   <button><%= link_to 'Listing patinents', patients_path %></button>
   <button>statistique</button>
     <div class='home-secondaire'>
