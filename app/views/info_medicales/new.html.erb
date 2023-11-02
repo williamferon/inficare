@@ -1,0 +1,31 @@
+<%= form_with(model: [@patient, @info_medicale]) do |form| %>
+  <% if @info_medicale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@info_medicale.errors.count, "erreur") %> empêchent la sauvegarde de cette info médicale :</h2>
+      <ul>
+        <% @info_medicale.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :info %>
+    <%= form.select :info, [' Allergie', 'Opération', 'Douleurs', 'Médicament', 'Autres'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :note %>
+    <%= form.text_field :note %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Créer l'info médicale" %>
+  </div>
+<% end %>

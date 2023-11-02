@@ -1,0 +1,27 @@
+
+<div class="container">
+  <h1 class="text-center mb-4">Kinesithérapeutes</h1>
+
+  <%= link_to "Nouveau kine", new_kine_path, class: "btn btn-primary mb-4" %>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Region</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @kines.each do |kine| %>
+        <tr>
+          <td><%= kine.nom %></td>
+          <td><%= kine.region %></td>
+          <td>
+            <%= link_to 'x', kine, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

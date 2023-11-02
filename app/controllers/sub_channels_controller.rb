@@ -10,7 +10,7 @@ class SubChannelsController < ApplicationController
       @sub_channel = @channel.sub_channels.build(sub_channel_params)
 
       if @sub_channel.save
-        redirect_to channel_sub_channel_path(@channel, @sub_channel), notice: 'Sous-canal créé avec succès.'
+        redirect_to channels_path, notice: 'Sous-canal créé avec succès.'
       else
         render 'new'
       end

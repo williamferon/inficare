@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'page#home'
-  resources :patients
+  resources :patients do
+    resources :incidents
+    resources :absences
+    resources :info_medicales
+  end
   resources :channels do
     resources :sub_channels
   end

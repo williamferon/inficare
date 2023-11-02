@@ -3,3 +3,18 @@
   <%= form.text_field :nom %>
   <%= form.submit "Créer le sous-canal" %>
 <% end %>
+<div class="container">
+  <h1 class="text-center mb-4">New Sub-Channel</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with(model: [@channel, @sub_channel], local: true, class: "d-flex flex-column") do |form| %>
+        <div class="form-group">
+          <%= form.label :nom, "Nom du sous-canal" %>
+          <%= form.text_field :nom, class: "form-control" %>
+        </div>
+        <%= form.submit "Créer le sous-canal", class: "btn btn-primary mt-2 align-self-end" %>
+      <% end %>
+    </div>
+  </div>
+</div>

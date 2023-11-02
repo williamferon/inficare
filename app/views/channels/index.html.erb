@@ -1,42 +1,49 @@
-<h1> Listing des cannaux </h1>
 
-<div class="row justify-content-center">
-  <div class="col-sm-8 my-3">
-    <%= form_with url: channels_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Type nom"
-        %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
+<div class="container">
+  <h1 class="text-center mb-4">Liste des canaux</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nom</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ul>
-      <% @channels.each do |channel| %>
-        <li>
-          <h2><%= link_to channel.nom, channel_path(channel) %></h2>
-          <strong><%= link_to "x", channel_path(channel), { data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} } %></strong>
-
-          <ul>
-            <% channel.sub_channels.each do |sub_channel| %>
-              <li><%= sub_channel.nom %></li>
-              <strong><%= link_to "x", channel_sub_channel_path(channel, sub_channel), { data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} } %></strong>
-            <% end %>
-
-          </ul>
-          <strong><%= link_to "+", new_channel_sub_channel_path(channel) %></strong>
-        </li>
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <%= form_with url: channels_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Rechercher par nom"
+          %>
+        <%= submit_tag "Rechercher", name: "", class: "btn btn-primary ml-2" %>
       <% end %>
-    </ul>
-  </tbody>
-</table>
-<button><%= link_to 'Nouveau canal', new_channel_path %></button>
+    </div>
+  </div>
+  <%= link_to 'Nouveau canal', new_channel_path, class: "btn btn-primary" %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @channels.each do |channel| %>
+        <tr>
+          <td>
+            <h2><%= link_to channel.nom, channel_path(channel) %></h2>
+            <div class="d-flex justify-content-between">
+              <%= link_to "Supprimer", channel_path(channel), { data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr?"}, class: "btn btn-sm" } %>
+              <%= link_to "+ Ajouter un sous-canal", new_channel_sub_channel_path(channel), class: "btn btn-primary" %>
+            </div>
+            <ul>
+              <% channel.sub_channels.each do |sub_channel| %>
+                <li><%= sub_channel.nom %>
+                  <%= link_to "x", channel_sub_channel_path(channel, sub_channel), { data: {turbo_method: :delete, turbo_confirm: "Êtes-vous sûr?"}, class: "btn btn-danger btn-sm ml-2" }  %>
+
+                </li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+</div>

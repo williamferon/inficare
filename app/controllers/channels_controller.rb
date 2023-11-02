@@ -36,6 +36,7 @@ class ChannelsController < ApplicationController
 
   def destroy
     @channel = Channel.find(params[:id])
+    @channel.sub_channels.destroy_all # Delete associated sub-channels
     @channel.destroy
     redirect_to channels_path, notice: 'Canal supprimé avec succès.'
   end

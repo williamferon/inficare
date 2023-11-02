@@ -1,0 +1,40 @@
+
+<!-- app/views/absences/new.html.erb -->
+<h1>Nouvel absence-visite pour <%= @patient.nom %></h1>
+
+<%= form_with(model: [@patient, @absence]) do |form| %>
+  <% if @absence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@absence.errors.count, "erreur") %> empêchent la sauvegarde de cet absence-visite :</h2>
+      <ul>
+        <% @absence.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :equipe %>
+    <%= form.select :equipe, ['infis', 'kines'] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :motif %>
+    <%= form.text_field :motif %>
+  </div>
+
+  <div class="field">
+    <%= form.label :etat %>
+    <%= form.select :etat, [' A Traiter', 'Call Patient', 'Call Equipe', 'Cloturé'] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Créer l'absence-visite" %>
+  </div>
+<% end %>

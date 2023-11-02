@@ -14,7 +14,7 @@ class KinesController < ApplicationController
   def create
     @kine = Kine.new(kine_params)
     if @kine.save
-      redirect_to @kine
+      redirect_to kines_path, notice: 'Kinésithérapeute créé avec succès.'
     else
       render 'new'
     end
@@ -36,11 +36,11 @@ class KinesController < ApplicationController
   def destroy
     @kine = Kine.find(params[:id])
     @kine.destroy
-    redirect_to kines_path
+    redirect_to kines_path, notice: 'Kinésithérapeute supprimé avec succès.'
   end
 
   private
     def kine_params
-      params.require(:kine).permit(:name, :region)
+      params.require(:kine).permit(:nom, :region)
     end
 end
