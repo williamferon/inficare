@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :kines
   resources :infis
-  resources :prise_en_charges, only: [:new, :create]
+  resources :prise_en_charges
 end
 
 # config/routes.rb

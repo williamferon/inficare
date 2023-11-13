@@ -45,14 +45,77 @@
   <%= form.check_box :service, {}, 'InfiCare', nil %> InfiCare
   </div>
   <h2>dispatching:</h2>
-
+  <div class="field">
+    <%= form.label :dispatching_infi, "Dispatching Inficare:" %>
+    <%= form.collection_select :dispatching_infi, Infi.all, :id, :nom, include_blank: true %>
+  </div>
 
   <div class="field">
-    <%= form.label :dispatching_kine, "Dispatching kinécare" %>
-    <%= form.collection_select :dispatching_kine, Kine.all , :nom, :nom %>
+    <%= form.label :dispatching_infi, "Dispatching kinécare:" %>
+    <%= form.collection_select :dispatching_kine, Kine.all, :id, :nom, include_blank: true %>
+  </div>
+<h2>Source</h2>
+  <div class="field">
+    <%= form.label :channel, "Canal:" %>
+    <%= form.collection_select :channel, Channel.all, :id, :nom, include_blank: true %>
+  </div>
+  <div class="field">
+  <%= form.label :channel, "Sous-canal:" %>
+  <%= form.grouped_collection_select :channel_id, Channel.all, :sub_channels, :nom, :id, :nom, include_blank: true %>
+  </div>
+  <div class="field">
+  <%= form.label :coordinateur, "coordinateur:" %>
+  <%= form.text_field :coordinateur %>
+  </div>
+
+  <div class="field">
+  <%= form.label :email, "email:" %>
+  <%= form.text_field :email %>
+  </div>
+  <h2>Horaire</h2>
+  <div class="field">
+    <%= form.label :matin_start_time, " Matin entre:" %>
+    <%= form.time_select :matin_start_time%>
+    <%= form.label :matin_end_time, " Et:" %>
+    <%= form.time_select :matin_end_time%>
+  </div>
+  <div class="field">
+    <%= form.label :midi_start_time, " Midi entre:" %>
+    <%= form.time_select :midi_start_time%>
+    <%= form.label :midi_end_time, " Et:" %>
+    <%= form.time_select :midi_end_time%>
+  </div>
+   <div class="field">
+    <%= form.label :apres_midi_start_time, " Apres midi entre:" %>
+    <%= form.time_select :apres_midi_start_time%>
+    <%= form.label :apres_midi_end_time, " Et:" %>
+    <%= form.time_select :apres_midi_end_time%>
   </div>
 
 
+  <div class="field">
+    <%= form.label :soir_start_time, " Soir entre:" %>
+    <%= form.time_select :soir_start_time%>
+    <%= form.label :soir_end_time, " Et:" %>
+    <%= form.time_select :soir_end_time%>
+  </div>
+
+
+
+  <h2>Commentaire</h2>
+  <div class="field">
+    <%= form.label :commentaire, "Commentaire:" %>
+    <%= form.text_area :commentaire %>
+  </div>
+  <h2>Statut</h2>
+  <div class="field">
+  <div class="field">
+  <%= form.label :statut_demande, "Statut:" %>
+  <% ['CALL PATIENT ', 'SMS PATIENT Envoyé', 'ATTRIBUTION EQUIPE', 'Confirmation Cannaux'].each do |status| %>
+    <%= check_box_tag 'statut_demande[]', status, @prise_en_charge.statut_demande&.include?(status) %>
+    <%= label_tag status %>
+  <% end %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

@@ -1,0 +1,15 @@
+<h1>Prises en charge patient: <%= @patient.nom %>, <%= @patient.prenom %></h1>
+<% @patient.prise_en_charges.each do |prise_en_charge| %>
+  <p>
+   <%= @patient.prise_en_charges.inspect %> <!-- Replace 'attribute' with the actual attribute name -->
+  </p>
+<% end %>
+<h1>Prises en charge patient: <%= @patient.nom %>, <%= @patient.prenom %></h1>
+
+<%= @patient.prise_en_charges.inspect %>
+
+<% @patient.prise_en_charges.each do |prise_en_charge| %>
+  <p>
+    <%= prise_en_charge.dispatching %>  <!-- Replace 'dispatching' with the actual attribute name -->
+  </p>
+<% end %>
