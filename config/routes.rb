@@ -5,7 +5,10 @@ Rails.application.routes.draw do
     resources :incidents
     resources :absences
     resources :info_medicales
-    resources :prise_en_charges, except: [:new, :create]
+    resources :prise_en_charges do
+      resources :soins_infirmers
+      resources :soins_kiners
+    end
   end
   resources :channels do
     resources :sub_channels

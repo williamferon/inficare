@@ -1,0 +1,13 @@
+  <h2>modification de l'etat</h2>
+<%= form_with(model: [@patient, @prise_en_charge]) do |form| %>
+  <div class="field">
+      <%= form.label :statut_demande, "Statut:" %>
+    <% ['CALL PATIENT ', 'SMS PATIENT Envoyé', 'ATTRIBUTION EQUIPE', 'Confirmation Cannaux'].each do |status| %>
+    <%= check_box_tag 'prise_en_charge[statut_demande][]', status, @prise_en_charge.statut_demande&.include?(status) %>
+    <%= label_tag status %>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Modifier l'etat" %>
+  </div>
+<% end %>

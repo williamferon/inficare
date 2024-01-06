@@ -1,0 +1,10 @@
+<h2>modification de l'etat</h2>
+<%= form_with(model: [@patient, @incident]) do |form| %>
+  <div class="field">
+    <%= form.label :etat %>
+    <%= form.select :etat, [' A Traiter', 'Call Patient', 'Call Equipe', 'Cloturé'] %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Modifier l'etat" %>
+  </div>
+<% end %>

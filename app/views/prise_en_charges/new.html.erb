@@ -1,19 +1,9 @@
 <h1>New Prise En Charge</h1>
+  <h2>Patient: <%= @patient.nom %> <%=@patient.prenom %></h2>
+<%= form_with(model: [@patient, @prise_en_charge], local: true) do |form| %>
 
-<%= form_with(model: @prise_en_charge, local: true) do |form| %>
-  <%= form.hidden_field :patient_id, value: @patient.id %>
-  <% if @prise_en_charge.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@prise_en_charge.errors.count, "error") %> prohibited this prise_en_charge from being saved:</h2>
-    </div>
-  <% end %>
-  <!-- rest of your form fields here -->
-  <h2>Patient</h2>
-  <div class="field">
-    <%= form.label :patient_id, "Select Existing Patient" %>
-    <%= form.collection_select :patient_id, Patient.all, :id, :nom_and_prenom_and_niss , include_blank: true %>
-    <button><%= link_to '+ Create New Patient', new_patient_path %></button>
-  </div>
+
+
   <h2>Date</h2>
   <div class="field">
     <%= form.label :date_appel, "Date appel" %>
@@ -40,28 +30,28 @@
   </div>
   <h2>Service :</h2>
   <div class="field">
-  <%= form.label :service, "Service :" %>
-  <%= form.check_box :service, {}, 'KineCare', nil %> KineCare
-  <%= form.check_box :service, {}, 'InfiCare', nil %> InfiCare
+    <%= form.label :service, "Service :" %>
+    <%= form.check_box :service, { multiple: true }, 'KineCare', nil %> KineCare
+    <%= form.check_box :service, { multiple: true }, 'InfiCare', nil %> InfiCare
   </div>
   <h2>dispatching:</h2>
   <div class="field">
-    <%= form.label :dispatching_infi, "Dispatching Inficare:" %>
-    <%= form.collection_select :dispatching_infi, Infi.all, :id, :nom, include_blank: true %>
+    <%= form.label :dispatching_inficare, "Dispatching Inficare:" %>
+    <%= form.collection_select :dispatching_inficare, Infi.all, :id, :nom, include_blank: true %>
+  </div>
+   <div class="field">
+  <%= form.label :dispatching_kinecare, "Dispatching kinécare:" %>
+  <%= form.collection_select :dispatching_kinecare, Kine.all, :id, :nom, include_blank: true %>
   </div>
 
+  <h2>Source</h2>
   <div class="field">
-    <%= form.label :dispatching_infi, "Dispatching kinécare:" %>
-    <%= form.collection_select :dispatching_kine, Kine.all, :id, :nom, include_blank: true %>
-  </div>
-<h2>Source</h2>
-  <div class="field">
-    <%= form.label :channel, "Canal:" %>
-    <%= form.collection_select :channel, Channel.all, :id, :nom, include_blank: true %>
+    <%= form.label :channel_id, "Canal:" %>
+    <%= form.collection_select :channel_id, Channel.all, :id, :nom, include_blank: true %>
   </div>
   <div class="field">
-  <%= form.label :channel, "Sous-canal:" %>
-  <%= form.grouped_collection_select :channel_id, Channel.all, :sub_channels, :nom, :id, :nom, include_blank: true %>
+  <%= form.label :subchannel_id, "Sous-canal:" %>
+  <%= form.grouped_collection_select :subchannel_id, Channel.all, :sub_channels, :nom, :id, :nom, include_blank: true %>
   </div>
   <div class="field">
   <%= form.label :coordinateur, "coordinateur:" %>
@@ -99,6 +89,7 @@
     <%= form.label :soir_end_time, " Et:" %>
     <%= form.time_select :soir_end_time%>
   </div>
+  <h2>soins</h2>
 
 
 
@@ -110,15 +101,15 @@
   <h2>Statut</h2>
   <div class="field">
   <div class="field">
-  <%= form.label :statut_demande, "Statut:" %>
-  <% ['CALL PATIENT ', 'SMS PATIENT Envoyé', 'ATTRIBUTION EQUIPE', 'Confirmation Cannaux'].each do |status| %>
-    <%= check_box_tag 'statut_demande[]', status, @prise_en_charge.statut_demande&.include?(status) %>
+      <%= form.label :statut_demande, "Statut:" %>
+    <% ['CALL PATIENT ', 'SMS PATIENT Envoyé', 'ATTRIBUTION EQUIPE', 'Confirmation Cannaux'].each do |status| %>
+    <%= check_box_tag 'prise_en_charge[statut_demande][]', status, @prise_en_charge.statut_demande&.include?(status) %>
     <%= label_tag status %>
-  <% end %>
+    <% end %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'create prise en charge'%>
   </div>
 <% end %>
 

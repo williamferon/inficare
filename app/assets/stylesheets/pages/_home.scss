@@ -1,0 +1,98 @@
+// Specific CSS for your home-page
+
+.home-button {
+
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+
+}
+
+.button-home{
+  border: white 2px solid;
+  padding: 5px;
+
+  box-shadow: 3px;
+  border-radius: 10px;
+  background-color: #0339a6;
+  color: #f2f2f2;
+
+}
+
+.home-button button:hover{
+  background-color: #5e88bf
+}
+
+.home-button a:hover{
+background-color: #5e88bf
+}
+
+
+.home-button a{
+
+
+  background-color: #0339a6;
+  color: #f2f2f2;
+  text-decoration: none;
+}
+
+.test{
+  margin-top: 20px;
+
+color: #0339a6;
+font-size: 25px;
+}
+
+.tableau {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.tableau th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+
+}
+
+.tableau th {
+  background-color: #0339a6;
+  color: white;
+}
+
+.tableau tr {
+
+    background-color: #87CEFA;
+  }
+
+h2 {
+  color: #0339a6;
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+logo-container {
+  float: left;
+  margin-right: 10px;
+}
+
+.containerh {
+display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.home-secondaire {
+
+  display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}

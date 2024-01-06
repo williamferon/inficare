@@ -1,19 +1,103 @@
-<div class='home-button'>
-  <% time =  Time.now %>
-  <%= time.to_fs(:long) %>
-  <button><%= link_to 'Recherche patient', patients_path %></button>
-<button><%= link_to 'Nouvelle prise en charge', new_prise_en_charge_path %></button>
-  <button><%= link_to 'Listing patinents', patients_path %></button>
-  <button>statistique</button>
-    <div class='home-secondaire'>
-      <button>Google maps</button>
-      <button><%= link_to 'canaux', channels_path %></button>
-      <button><%= link_to 'kines', kines_path %></button>
-      <button><%= link_to 'infis', infis_path %></button>
+<div class='general'>
+ <div class='containerh'>
+    <div class="logo-container">
+        <%= image_tag "logo.jpg", alt: "logo", width: 200, height: 200 %>
+      </div>
+    <div class='home-button'>
+      <% time =  Time.now %>
+      <%= time.to_fs(:long) %>
 
+      <%= link_to 'Recherche patient', patients_path, class: 'button-home' %>
+      <%= link_to 'New Prise En Charge', patients_path, class: 'button-home' %>
+
+     <%= link_to 'Listing patinents', patients_path , class: 'button-home'%>
+      <p class='button-home'>statistique</p>
+        <div class='home-secondaire'>
+          <p class='button-home'>Google maps</p>
+         <%= link_to 'canaux', channels_path, class: 'button-home' %>
+         <%= link_to 'kines', kines_path, class: 'button-home'%>
+          <%= link_to 'infis', infis_path, class: 'button-home' %>
+
+        </div>
     </div>
+
+    <div class="logo-container">
+      <%= image_tag "logo.jpg", alt: "logo", width: 200, height: 200 %>
+    </div>
+  </div>
+
+
+  <div class='test'>
+    <h2>Prise en charge en attente de traitemant: <%= @prise_en_charges_count %></h2>
+  </div>
+  <div class='root-first'>
+    <table class='tableau'>
+      <tr>
+        <th>Niss</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Service</th>
+        <th>Statut</th>
+        <th>Action</th>
+      </tr>
+    <% @patients.each do |patient| %>
+      <% patient.prise_en_charges.each do |prise_en_charge| %>
+        <% all_checkboxes_checked = prise_en_charge.statut_demande.present? && prise_en_charge.statut_demande.length == 4 %>
+        <% next if all_checkboxes_checked %>
+        <tr>
+          <td><%= patient.niss %></td>
+          <td><%= patient.nom %></td>
+          <td><%= patient.prenom %></td>
+          <td><%= prise_en_charge.service %></td>
+          <td><%= prise_en_charge.statut_demande&.join(', ') %></td>
+          <td><%= link_to 'Edit', edit_patient_prise_en_charge_path(patient, prise_en_charge)  %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </table>
+  </div>
+
+
+  <h2>Incident - Absence - Visite medicale en attente de traitement: <%= @total_count %></h2>
+  <table class='tableau'>
+    <tr>
+      <th>Date</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Equipe</th>
+      <th>Motif</th>
+      <th>Etat</th>
+      <th>Action</th>
+    </tr>
+    <% @patients.each do |patient| %>
+      <% patient.incidents.each do |incident| %>
+        <% if incident.date == Date.today && incident.etat != "Cloturé" %>
+          <tr style="background-color: yellow;">
+            <td><%= incident.date %></td>
+            <td><%= patient.nom %></td>
+            <td><%= patient.prenom %></td>
+            <td><%= incident.equipe %></td>
+            <td><%= incident.motif %></td>
+            <td><%= incident.etat %></td>
+            <td><%= link_to 'Modify Incident', edit_patient_incident_path(patient, incident) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% @patients.each do |patient| %>
+      <% patient.absences.each do |absence| %>
+        <% if absence.date == Date.today && absence.etat != "Cloturé" %>
+          <tr style="background-color: yellow;">
+            <td><%= absence.date %></td>
+            <td><%= patient.nom %></td>
+            <td><%= patient.prenom %></td>
+            <td><%= absence.equipe %></td>
+            <td><%= absence.motif %></td>
+            <td><%= absence.etat %></td>
+            <td><%= link_to 'Modify Absence-Visite', edit_patient_absence_path(patient, absence) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
 </div>
-<h1>Prise en charge en attente de traitemant: (comptteur: num)
-<p>tableau</p>
-<h2>Incident - Absence - Visite medicale en attente de traitement : (compteur: num)
-<p>tableau<p>s

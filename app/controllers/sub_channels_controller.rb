@@ -1,6 +1,6 @@
 class SubChannelsController < ApplicationController
     before_action :set_channel
-  def index
+    def index
       @channel = Channel.find(params[:channel_id])
       @sub_channels = @channel.sub_channels
     end

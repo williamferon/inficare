@@ -1,0 +1,8 @@
+<% @patient.prise_en_charges_soins_kiners.each do |soin_kiner| %>
+
+  <p>Soins: <%= soin_kiner.soins %></p>
+  <p>Periode: <%= soin_kiner.periode %></p>
+  <p>Frequence: <%= soin_kiner.frequence %></p>
+  <p>Autre: <%= soin_kiner.autre %></p>
+
+<% end %>

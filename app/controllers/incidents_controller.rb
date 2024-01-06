@@ -16,6 +16,22 @@ class IncidentsController < ApplicationController
     end
   end
 
+  def edit
+    @patient = Patient.find(params[:patient_id])
+    @incident = @patient.incidents.find(params[:id])
+  end
+
+  def update
+    @patient = Patient.find(params[:patient_id])
+    @incident = @patient.incidents.find(params[:id])
+      if @incident.update(incident_params)
+        redirect_to root_path, notice: 'Incident was successfully updated.'
+      else
+        render :edit
+      end
+  end
+
+
   private
 
   def incident_params

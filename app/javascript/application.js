@@ -3,6 +3,6 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
+import 'stylesheets/home.scss';
+// app/assets/javascripts/application.js
+//= require bootstrap

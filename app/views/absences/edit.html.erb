@@ -1,0 +1,9 @@
+  <%= form_with(model: [@patient, @absence]) do |form| %>
+  <div class="field">
+    <%= form.label :etat %>
+    <%= form.select :etat, [' A Traiter', 'Call Patient', 'Call Equipe', 'Cloturé'] %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Modifier l'etat" %>
+  </div>
+<% end %>

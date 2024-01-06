@@ -1,0 +1,37 @@
+<%= form_with(model: [ @patient, @prise_en_charge, @soins_infirmer], local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :soins, "Soins:" %>
+    <% ['Bandage', 'Toilette', 'Diabete', 'Prendre pesos'].each do |status| %>
+      <%= check_box_tag 'soins_infirmer[soins][]', status, @soins_infirmer&.soins&.include?(status) %>
+      <%= label_tag status %>
+    <% end %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :periode, "Periode:" %>
+    <%= form.check_box :periode, { multiple: true }, 'Jour', nil %> Jour
+    <%= form.check_box :periode, { multiple: true }, 'semaine', nil %> Semaine
+     <%= form.check_box :periode, { multiple: true }, 'Mois', nil %> Mois
+  </div>
+
+  <div class="field">
+    <%= form.label :frequence, "Frequence:" %>
+    <%= form.check_box :frequence, { multiple: true }, '1x', nil %> 1x
+    <%= form.check_box :frequence, { multiple: true }, '2x', nil %> 2x
+    <%= form.check_box :frequence, { multiple: true }, '3x', nil %> 3x
+    <%= form.check_box :frequence, { multiple: true }, '4x', nil %> 4x
+  </div>
+
+  <div class="field">
+    <%= form.label :autre, "Autre:" %>
+    <%= form.text_area :autre %>
+  </div>
+
+
+  <div class='actions'>
+    <%= form.submit 'Create Soins Infirmer' %>
+  </div>
+
+<% end %>

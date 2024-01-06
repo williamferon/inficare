@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_02_142252) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_25_150431) do
   create_table "absences", force: :cascade do |t|
     t.date "date"
     t.string "equipe"
@@ -96,13 +96,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_142252) do
     t.string "dispatching_kinecare"
     t.string "demande"
     t.string "service"
-    t.string "soins_infi"
-    t.string "soins_kine"
     t.date "date_appel"
     t.date "date_debut"
     t.string "moment"
-    t.string "channel"
-    t.string "subchannel"
     t.string "coordinateur"
     t.string "email"
     t.string "commentaire"
@@ -117,7 +113,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_142252) do
     t.time "soir_end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subchannel_id", null: false
+    t.integer "channel_id", null: false
+    t.string "soins_infirmer"
+    t.index ["channel_id"], name: "index_prise_en_charges_on_channel_id"
     t.index ["patient_id"], name: "index_prise_en_charges_on_patient_id"
+    t.index ["subchannel_id"], name: "index_prise_en_charges_on_subchannel_id"
+  end
+
+  create_table "soins_infirmers", force: :cascade do |t|
+    t.string "soins"
+    t.string "periode"
+    t.string "frequence"
+    t.string "autre"
+    t.integer "prise_en_charge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prise_en_charge_id"], name: "index_soins_infirmers_on_prise_en_charge_id"
+  end
+
+  create_table "soins_kiners", force: :cascade do |t|
+    t.string "soins"
+    t.string "periode"
+    t.string "frequence"
+    t.string "autre"
+    t.integer "prise_en_charge_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prise_en_charge_id"], name: "index_soins_kiners_on_prise_en_charge_id"
   end
 
   create_table "subchannels", force: :cascade do |t|
@@ -131,6 +154,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_02_142252) do
   add_foreign_key "absences", "patients"
   add_foreign_key "incidents", "patients"
   add_foreign_key "info_medicales", "patients"
+  add_foreign_key "prise_en_charges", "channels"
   add_foreign_key "prise_en_charges", "patients"
+  add_foreign_key "prise_en_charges", "subchannels"
+  add_foreign_key "soins_infirmers", "prise_en_charges"
+  add_foreign_key "soins_kiners", "prise_en_charges"
   add_foreign_key "subchannels", "channels"
 end

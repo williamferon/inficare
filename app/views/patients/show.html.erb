@@ -43,6 +43,115 @@
     </tr>
   </tbody>
 </table>
+<h2>Prise en charge</h2><%= link_to '+ Ajoutez une prise ne charge', new_patient_prise_en_charge_path(patient_id: @patient.id) %>
+<%# <% @patient.prise_en_charges.each do |prise|%>
+<% prise = @patient.prise_en_charges.last %>
+<% if prise %>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Traite par : </th>
+        <td><%= prise.traite_par%></td>
+      </tr>
+      <tr>
+        <th>Info patient :</th>
+        <td><%= prise.info_patient%></td>
+      </tr>
+      <tr>
+        <th>dispatching Inficare:</th>
+        <td><%=  Infi.find_by(id: prise.dispatching_inficare)&.nom %></td>
+      </tr>
+      <tr>
+        <th>dispatching kinecare:</th>
+        <td><%= Kine.find_by(id: prise.dispatching_kinecare)&.nom %></td>
+      </tr>
+      <tr>
+        <th>demande</th>
+        <td><%= prise.demande %></td>
+      </tr>
+      <tr>
+        <th>service</th>
+        <td><% prise.service %></td>
+      </tr>
+      <tr>
+        <th>date appel</th>
+        <td><%= prise.date_appel%></td>
+      </tr>
+      <tr>
+        <th>date debut</th>
+        <td><%= prise.date_debut %></td>
+        <td><%= prise.moment %></td>
+      </tr>
+      <tr>
+        <th>channel</th>
+        <td><%=  Channel.find_by(id: prise.channel)&.nom %></td>
+        <td><%=  SubChannel.find_by(id: prise.subchannel)&.nom %></td>
+        <td><%= prise.coordinateur %></td>
+        <td><%= prise.email %></td>
+      </tr>
+      <tr>
+        <th>statut demande</th>
+
+           <td><%= prise.statut_demande%></td>
+      </tr>
+
+      <tr>
+        <th>Horaire</th>
+        <td>Matin: <%= prise.matin_start_time.strftime("%H:%M") %>-<%= prise.matin_end_time.strftime("%H:%M")  %></td>
+        <td>Midi: <%= prise.midi_start_time.strftime("%H:%M") %>-<%= prise.midi_end_time.strftime("%H:%M") %></td>
+        <td>aprem: <%= prise.apres_midi_start_time.strftime("%H:%M") %>-<%= prise.apres_midi_end_time.strftime("%H:%M") %></td>
+        <td>soir: <%= prise.soir_start_time.strftime("%H:%M") %>-<%= prise.soir_end_time.strftime("%H:%M") %></td>
+      </tr>
+      <tr>
+        <th>Commentaire</th>
+        <td><%= prise.commentaire %></td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>Soins Infi:</h2><%= link_to 'New Soins Infirmer', new_patient_prise_en_charge_soins_infirmer_path(@patient, @patient.prise_en_charges.last) %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Soins</th>
+        <th>Période</th>
+        <th>Fréquence</th>
+        <th>Autre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% prise.soins_infirmers.each do |soins| %>
+        <tr>
+          <td><%= soins.soins.first %></td>
+          <td><%= soins.periode.first %></td>
+          <td><%= soins.frequence.first%></td>
+          <td><%= soins.autre %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h2>Soins Kiner:</h2><%= link_to 'New Soins Kiner', new_patient_prise_en_charge_soins_kiner_path(@patient, @patient.prise_en_charges.last) %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Soins</th>
+        <th>Période</th>
+        <th>Fréquence</th>
+        <th>Autre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% prise.soins_kiners.each do |soins| %>
+        <tr>
+          <td><%= soins.soins.first%></td>
+          <td><%= soins.periode.first%></td>
+          <td><%= soins.frequence.first %></td>
+          <td><%= soins.autre %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+ <% end %>
+
 <h2>Info medicales</h2><%= link_to '+', new_patient_info_medicale_path(patient_id: @patient.id) %>
 <table class="table">
   <thead>

@@ -1,0 +1,2 @@
+module SoinsKinersHelper
+end
